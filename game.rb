@@ -3,8 +3,8 @@ require_relative 'turn'
 
 class Game
   def initialize
-    player1 = Player.new()
-    player2 = Player.new()
+    player1 = Player.new('player 1')
+    player2 = Player.new('player 2')
     @players = [player1, player2]
   end
 
@@ -12,6 +12,7 @@ class Game
     c_player = 0
     max_round = 10
     while(!game_over? && max_round > 0)
+      puts "#{@players[c_player].name}'s turn"
       turn = Turn.new()
       answer = turn.next()
       if(answer == true)
@@ -26,7 +27,7 @@ class Game
       end
       max_round -= 1
     end
-    winning_player = alive_players[0]
+    winning_player = alive_players[0].name
     puts "Winner is #{winning_player}!"
   end
 
